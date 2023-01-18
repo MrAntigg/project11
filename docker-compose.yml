@@ -12,5 +12,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - /home/jenkins/www:/var/www
+      - ./www:/var/www
     logging: *logging
