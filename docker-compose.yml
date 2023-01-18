@@ -12,5 +12,5 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./www:/var/www
+      - /var/www:/var/www
     logging: *logging

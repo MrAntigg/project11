@@ -4,6 +4,8 @@ pipeline {
     stages {
         stage('Run docker nginx') {
             steps {
+                sh 'sudo mkdir -p /var/www'
+                sh 'sudo cp ./www/index.html /var/www/index.html'
                 sh 'docker-compose up -d'
             }
         }
