@@ -14,14 +14,14 @@ pipeline {
             steps {
                 script {
                     final String url = 'http://localhost:9889'
-                        final def (String response, int code) =
+                        final def (String response, String code) =
                             sh(script: "curl -s -w '\\n%{response_code}' $url", returnStdout: true)
                                 .trim()
                                 .tokenize("\n")
 
-                        echo "HTTP response status code:"
+                        echo "HTTP response status code: $code"
 
-                        if (code == 200) {
+                        if (code == '200') {
                             echo response
                         }
 
