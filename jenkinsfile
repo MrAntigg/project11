@@ -29,5 +29,12 @@ pipeline {
 
             }
         }
+
+        stage('Stop and del nginx container'){
+            steps{
+                sh 'docker stop new_project11_nginx_1'
+                sh 'docker rm new_project11_nginx_1'
+            }
+        }
     }
 }
