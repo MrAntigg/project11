@@ -15,8 +15,10 @@ pipeline {
                 script {
                     final String url = 'http://localhost:9889'
                         final def (String response, int code) =
-                            sh(script: "curl -s -w '\n%{response_code}' $url", returnStdout: true)
+                            sh(script: "curl -s -w '\\n%{response_code}' $url", returnStdout: true)
                                 .trim()
+                                tokenize("\n")
+                                
                         echo "HTTP response status code: $code"
 
                         if (code == 200) {
