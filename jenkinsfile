@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Run docker nginx') {
             steps {
-                sh 'cp ./www/index.html /var/www/index.html'
+                sh 'cp ./www/index.html /home/jenkins/www/index.html'
                 sh 'docker-compose up -d'
             }
         }
