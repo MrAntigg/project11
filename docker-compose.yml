@@ -10,7 +10,7 @@ services:
   nginx:
     image: "nginx:1.23"
     ports:
-      - "80:80"
+      - "9889:80"
     volumes:
-      - /var/www:/var/www
+      - /usr/share/nginx/html:/usr/share/nginx/html
     logging: *logging
