@@ -17,8 +17,8 @@ pipeline {
                         final def (String response, int code) =
                             sh(script: "curl -s -w '\\n%{response_code}' $url", returnStdout: true)
                                 .trim()
-                                tokenize("\n")
-                                
+                                .tokenize("\n")
+
                         echo "HTTP response status code: $code"
 
                         if (code == 200) {
