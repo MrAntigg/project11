@@ -12,10 +12,19 @@ pipeline {
 
         stage('HTTP Request'){
             steps {
-                url = 'http://localhost:9889'
-                int status = sh(script: "curl -sLI -w '%{http_code}' $url -o /dev/null", returnStdout: true)
-                if (status == 200) {
-                    echo "It's ok"
+                script {
+                    final String url = 'http://localhost:9889'
+                        final def (String response, int code) =
+                            sh(script: "curl -s -w '\\n%{response_code}' $url", returnStdout: true)
+                                .trim()
+                                .tokenize("\n")
+
+                        echo "HTTP response status code:"
+
+                        if (code == 200) {
+                            echo response
+                        }
+
                 }
 
             }
