@@ -1,0 +1,13 @@
+pipeline {
+    agent {
+        label 'main'
+    }
+    stages {
+        stage('Run nginx') {
+            steps {
+                sh 'cp ./www/index.html /var/www/index.html'
+                sh 'docker-compose up'
+            }
+        }
+    }
+}
