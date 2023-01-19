@@ -20,18 +20,18 @@ pipeline {
                         echo "HTTP response status code: $code"
 
                         if (code == '200') {
-                            post {
-                                always {
-                                    mail to: 'mrantigg@gmail.com',
-                                         subject: "Failed Check HTTP Request",
-                                         body: "Response code not 200"
-                                }
-                            }
+                            error('Response code not 200')
                         }
 
                 }
+                post {
+                    failure {
+                        mail to: 'mrantigg@gmail.com',
+                              subject: "Failed stage Check HTTP Request ",
+                              body: "Response code not 200"
+                    }
 
-            }
+                }
         }
         
         stage('Check MD5') {
