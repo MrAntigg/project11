@@ -26,9 +26,7 @@ pipeline {
                 }
                 post {
                     failure {
-                        mail to: 'mrantigg@gmail.com',
-                              subject: "Failed stage Check HTTP Request ",
-                              body: "Response code not 200"
+                        emailext body: 'Responce code not 200', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Error stage Check HTTP Request'
                     }
 
                 }
