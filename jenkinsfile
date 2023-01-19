@@ -11,8 +11,8 @@ pipeline {
         stage('Check HTTP Request'){
             steps {
                 script {
-                    final String url = 'http://localhost:9889'
-                        final def (String response, String code) =
+                    url = 'http://localhost:9889'
+                        def (String response, String code) =
                             sh(script: "curl -s -w '\\n%{response_code}' $url", returnStdout: true)
                                 .trim()
                                 .tokenize("\n")
