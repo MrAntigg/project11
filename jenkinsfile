@@ -31,8 +31,8 @@ pipeline {
         stage('Check MD5') {
             steps {
                 script {
-                    String online_md5=sh 'curl -sL http://localhost:9889 | md5sum | cut -d ' ' -f 1'
-                    String local_md5=sh 'md5sum "./www/index.html" | cut -d ' ' -f 1'
+                    online_md5=sh ('curl -sL http://localhost:9889 | md5sum | cut -d ' ' -f 1')
+                    local_md5=sh ('md5sum ./www/index.html | cut -d ' ' -f 1')
 
                     if (online_md5 == local_md5) {
                         echo "It's ok!"
