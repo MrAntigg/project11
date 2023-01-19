@@ -20,12 +20,12 @@ pipeline {
                         echo "HTTP response status code: $code"
 
                         if (code == '200') {
-                            error('Response code not 200')
+                            echo code
                         }
 
                 }
                 post {
-                    failure {
+                    always {
                         emailext body: 'Responce code not 200', recipientProviders: [[$class: 'DevelopersRecipientProvider'], [$class: 'RequesterRecipientProvider']], subject: 'Error stage Check HTTP Request'
                     }
 
