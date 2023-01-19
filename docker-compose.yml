@@ -12,5 +12,5 @@ services:
     ports:
       - "9889:80"
     volumes:
-      - /usr/share/nginx/html:/usr/share/nginx/html
+      - ./www:/usr/share/nginx/html
     logging: *logging
