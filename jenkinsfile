@@ -32,6 +32,7 @@ pipeline {
                     }
 
                 }
+            }
         }
         
         stage('Check MD5') {
@@ -56,3 +57,4 @@ pipeline {
         }
     }
 }
+
