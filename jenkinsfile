@@ -8,7 +8,7 @@ pipeline {
             }
         }
 
-        stage('HTTP Request'){
+        stage('Check HTTP Request'){
             steps {
                 script {
                     final String url = 'http://localhost:9889'
@@ -27,6 +27,20 @@ pipeline {
 
             }
         }
+        
+        stage('Check MD5') {
+            steps {
+                script {
+                    final String online_md5="$(curl -sL http://localhost:9889 | md5sum | cut -d ' ' -f 1)"
+                    final String local_md5="$(md5sum ./www/index.html | cut -d ' ' -f 1)"
+
+                    if (online_md5 == local_md5) {
+                        echo "It's ok!"
+                    }
+                }
+            }
+        }
+
 
         stage('Stop and del nginx container'){
             steps {
