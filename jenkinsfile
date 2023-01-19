@@ -19,7 +19,7 @@ pipeline {
 
                         echo "HTTP response status code: $code"
 
-                        if (code == '200') {
+                        if (code != '200') {
                             error('Response code not 200')
                         }
 
@@ -34,8 +34,8 @@ pipeline {
                     online_md5=sh ("curl -sL http://localhost:9889 | md5sum | cut -d ' ' -f 1")
                     local_md5=sh ("md5sum ./www/index.html | cut -d ' ' -f 1")
 
-                    if (online_md5 == local_md5) {
-                        echo "It's ok!"
+                    if (online_md5 != local_md5) {
+                        error ('MD5 don\'t match')
                     }
                 }
             }
